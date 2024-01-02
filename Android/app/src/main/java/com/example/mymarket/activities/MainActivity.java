@@ -1,7 +1,8 @@
-package com.example.mymarket;
+package com.example.mymarket.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.mymarket.R;
 
 public class MainActivity extends AppCompatActivity {
 
