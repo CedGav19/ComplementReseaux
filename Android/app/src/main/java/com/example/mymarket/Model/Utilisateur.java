@@ -35,7 +35,7 @@ public class Utilisateur {
     public void setRequete(String requete){this.requete = requete;}
     public String getRequete(){return requete;}
 
-    private int numArticle = 1;
+    private int numArticle = 0;
     public void setNumArticle(int numArt){this.numArticle = numArt;}
     public int getNumArticle() {return numArticle;}
 
@@ -97,7 +97,8 @@ public class Utilisateur {
     //////////////Fabrication des requetes//////////////
     ///////////////////////////////////////////////////
     public void consult() throws IOException {
-        requete = "CONSULT#" + numArticle;
+        System.out.println("debut de consult ");
+        requete = "CONSULT#" + (numArticle%21 +1);
         echange(requete);
 
         String[] mots = resultat.split("#");
@@ -362,7 +363,7 @@ public class Utilisateur {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public Utilisateur(Context c1) throws IOException {
+    private Utilisateur(Context c1) throws IOException {
         this.context = c1.getApplicationContext();
         new AsyncTask<Void, Void, Void>() {
             @Override

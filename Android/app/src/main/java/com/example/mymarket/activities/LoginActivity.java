@@ -8,11 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.mymarket.Model.ReadProperties;
 import com.example.mymarket.Model.Utilisateur;
 import com.example.mymarket.R;
 import com.example.mymarket.controller.LoginController;
-
+import com.example.mymarket.databinding.ActivityLoginBinding;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -28,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         this.login = (Button)  findViewById(R.id.buttonLogin);
         try {
-            u= new Utilisateur(getApplicationContext());
+            u= Utilisateur.getInstance(getApplicationContext());
             lc= new LoginController(getApplicationContext());
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -52,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onLoginComplete() {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
 
                             @Override

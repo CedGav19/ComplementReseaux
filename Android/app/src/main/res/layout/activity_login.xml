@@ -7,7 +7,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="cedric"
             android:ems="10"
             android:id="@+id/Name"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="95dp"
@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="97dp"
             android:layout_marginBottom="126dp" app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
             android:layout_marginEnd="104dp" app:layout_constraintEnd_toEndOf="parent"
-            android:minHeight="48dp"  android:text="a"/>
+            android:minHeight="48dp"  android:text="ced123"/>
     <Button
             android:text="Button"
             android:layout_width="wrap_content"
