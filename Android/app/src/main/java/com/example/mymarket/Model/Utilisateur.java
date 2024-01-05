@@ -281,6 +281,7 @@ public class Utilisateur {
         prop   = new ReadProperties(context);
 
         String ipServeur = prop.getServerAddress();
+        System.out.println(prop.getServerAddress());
         int socket = prop.getServerPort();
         cSocket = new Socket(ipServeur,socket);
 

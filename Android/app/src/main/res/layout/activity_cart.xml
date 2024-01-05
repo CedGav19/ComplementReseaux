@@ -4,11 +4,35 @@
                 android:layout_height="match_parent">
 
     <!-- Liste d'éléments -->
+
+    <!-- Nouvelle LinearLayout avec un TextView -->
+
     <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/buttonLayout"/>
+            android:layout_above="@+id/totalLayout"
+            />
+
+    <LinearLayout
+            android:id="@+id/totalLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_above="@id/buttonLayout"
+            android:background="#ECECEC"
+            android:gravity="center_horizontal">
+        android:padding="16dp">
+
+        <!-- TextView dans la nouvelle LinearLayout -->
+        <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Total : "
+                android:padding="10dp"/>
+    </LinearLayout>
 
     <!-- Layout pour les boutons -->
     <LinearLayout
@@ -24,7 +48,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Réinitialiser" android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                android:text="Réinitialiser"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <!-- Bouton Acheter -->
         <Button
@@ -32,7 +57,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Acheter" android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                android:text="Acheter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <!-- Bouton Supprimer -->
         <Button
@@ -40,7 +66,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Supprimer" android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                android:text="Supprimer"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
     </LinearLayout>
 
 </RelativeLayout>

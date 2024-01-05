@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View view) {
+                System.out.println("hello trying to login...");
 
                 EditText name = (EditText) findViewById(R.id.Name);
                 EditText pwd = (EditText) findViewById(R.id.Password);

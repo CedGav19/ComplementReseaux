@@ -2,9 +2,7 @@ package com.example.mymarket.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mymarket.Model.Article;
 import com.example.mymarket.Model.Utilisateur;
@@ -32,9 +30,18 @@ public class CartActivity extends AppCompatActivity {
 
         listView.setAdapter(adaptateur);
         panier.add(new Article()) ;
-        panier.add(new Article(2,"salami", 12.3F,1,"")) ;
+        panier.add((new Article(2,"salami", 12.3F,1,""))) ;
         adaptateur.notifyDataSetChanged();
-
+        TextView total = findViewById(R.id.total);
+        try {
+            total.setText( String.format("Total : %.2f €", Utilisateur.getInstance(getApplicationContext()).getTotal()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override

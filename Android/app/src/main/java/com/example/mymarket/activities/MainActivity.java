@@ -1,14 +1,13 @@
 package com.example.mymarket.activities;
 
 import android.content.Intent;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.mymarket.Model.Article;
 import com.example.mymarket.Model.Utilisateur;
 import com.example.mymarket.R;
+import com.example.mymarket.controller.AcheterController;
 import com.example.mymarket.controller.ArticleController;
 import com.example.mymarket.databinding.ActivityMainBinding ;
 import com.google.android.material.snackbar.Snackbar;
@@ -57,6 +56,33 @@ public class MainActivity extends AppCompatActivity implements ArticleController
             startActivity(intent);
             finish();
         });
+        Button btnAcht = (Button) findViewById(R.id.acheterButton) ;
+
+        try {
+          AcheterController  ArtCont = new AcheterController(getApplicationContext());
+            btnAcht.setOnClickListener(v -> {
+            EditText qt = findViewById(R.id.quantity);
+            int quantite = Integer.parseInt(qt.getText().toString());
+            ArtCont.acheterArticleAsync(quantite, new AcheterController.OnAchatListener() {
+                @Override
+                public void onAchatSuccess() {
+                    Toast.makeText(MainActivity.this, "Article acheté", Toast.LENGTH_SHORT).show();
+                    ac.RecupArticle(u.getNumArticle(), MainActivity.this);
+                }
+
+                @Override
+                public void onAchatError(String errorMessage) {
+                    // Gérer l'erreur d'achat (affichage à l'utilisateur, journalisation, etc.)
+                }
+            });
+        });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -79,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements ArticleController
         TextView stockArticle = findViewById(R.id.stockArticle);
 
         ImageView imageArticle = findViewById(R.id.imageArticle) ;
-
         nomArticle.setText(u.articleSelect.getIntitule());
         stockArticle.setText(String.format(" %d ", u.articleSelect.getQuantite()));
         prixArticle.setText( String.format("%.2f €", u.articleSelect.getPrix()));
