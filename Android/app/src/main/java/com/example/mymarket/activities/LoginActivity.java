@@ -46,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
                 EditText pwd = (EditText) findViewById(R.id.Password);
                 lc.performLoginAsync(
                         name.getText().toString() ,
-                        pwd.getText().toString(), new LoginController.OnLoginCompleteListener() {
+                        pwd.getText().toString(),
+                        new LoginController.OnLoginCompleteListener() {
                             @Override
                             public void onLoginComplete() {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);

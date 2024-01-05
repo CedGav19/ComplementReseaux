@@ -9,6 +9,8 @@
             android:inputType="textPersonName"
             android:text="cedric"
             android:ems="10"
+
+
             android:id="@+id/Name"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="95dp"
             android:layout_marginEnd="106dp" app:layout_constraintEnd_toEndOf="parent"
