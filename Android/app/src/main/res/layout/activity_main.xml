@@ -12,7 +12,6 @@
             android:id="@+id/imageArticle"
             android:layout_width="204dp"
             android:layout_height="198dp"
-            app:srcCompat="@drawable/pommes"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -151,7 +151,7 @@ public class Utilisateur {
         }
     }
 
-    public void cancell(int numArt) throws IOException {
+    public boolean cancell(int numArt) throws IOException {
         if(numArt != -1 )
         {
             requete = "CANCEL#" + numArt;
@@ -165,7 +165,7 @@ public class Utilisateur {
                     {
                         removeArticlePanier(artPass);
                         System.out.println("CANCELL_OK");
-                        return;
+                        return true ;
                     }
                 }
             }
@@ -173,6 +173,7 @@ public class Utilisateur {
             {
                 System.out.println("Erreur_CANCELL");
                 MessageErr = "Erreur de cancel";
+
             }
         }
         else
@@ -180,6 +181,7 @@ public class Utilisateur {
             System.out.println("CANCEL_NO_SELECT");
             MessageErr = "Veuillez sélectionner un article a supprimer !";
         }
+        return false ;
 
     }
 
@@ -219,6 +221,7 @@ public class Utilisateur {
     }
 
     public String login(String nom , String mdp, Boolean newuser) throws IOException {
+
         if(nom.length() == 0 || mdp.length() == 0)
         {
             return "Les champs ne peuvent pas etre vide !";

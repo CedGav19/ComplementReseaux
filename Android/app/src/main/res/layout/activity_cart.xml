@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
     <!-- Liste d'éléments -->
+    <LinearLayout
+            android:id="@+id/buttonRetourLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_above="@+id/listView"
+            android:background="#ECECEC"
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            >
 
-    <!-- Nouvelle LinearLayout avec un TextView -->
+
+        <Button
+                android:id="@+id/buttonRetour"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="retour"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"/>
+    </LinearLayout>
 
     <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:layout_above="@+id/totalLayout"
             />
 
@@ -24,7 +43,6 @@
             android:gravity="center_horizontal">
         android:padding="16dp">
 
-        <!-- TextView dans la nouvelle LinearLayout -->
         <TextView
                 android:id="@+id/total"
                 android:layout_width="wrap_content"
@@ -34,7 +52,6 @@
                 android:padding="10dp"/>
     </LinearLayout>
 
-    <!-- Layout pour les boutons -->
     <LinearLayout
             android:id="@+id/buttonLayout"
             android:layout_width="match_parent"
@@ -42,7 +59,6 @@
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">
 
-        <!-- Bouton Réinitialiser -->
         <Button
                 android:id="@+id/buttonReset"
                 android:layout_width="0dp"
@@ -51,7 +67,6 @@
                 android:text="Réinitialiser"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-        <!-- Bouton Acheter -->
         <Button
                 android:id="@+id/buttonBuy"
                 android:layout_width="0dp"
@@ -60,7 +75,6 @@
                 android:text="Acheter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-        <!-- Bouton Supprimer -->
         <Button
                 android:id="@+id/buttonDelete"
                 android:layout_width="0dp"

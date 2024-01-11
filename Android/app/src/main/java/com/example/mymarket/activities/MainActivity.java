@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements ArticleController
 
     Utilisateur u ;
     ArticleController ac ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements ArticleController
         try {
             u = Utilisateur.getInstance(getApplicationContext());
             ac = new ArticleController(getApplicationContext());
-            ac.RecupArticle(u.getNumArticle(), this);
+            ac.RecupArticle(u.getNumArticle(), MainActivity.this);
 
         } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);

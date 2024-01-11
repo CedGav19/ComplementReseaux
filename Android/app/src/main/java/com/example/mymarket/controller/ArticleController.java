@@ -18,7 +18,7 @@ public class ArticleController {
         new ArticleTask(listener).execute(articleId);
     }
 
-    private class ArticleTask extends AsyncTask<Integer, Void, Void> {
+    private class ArticleTask extends AsyncTask<Integer, Void, Boolean> {
         private final OnArticleListener listener;
 
         public ArticleTask(OnArticleListener listener) {
@@ -26,17 +26,24 @@ public class ArticleController {
         }
 
         @Override
-        protected Void doInBackground(Integer... params) {
+        protected Boolean doInBackground(Integer... params) {
             try {
                 System.out.println("backgorund avant consult ");
                  utilisateur.consult();
-                 listener.onArticleRecup();
+                 return true ;
             } catch (Exception e) {
                 // Gérer l'erreur de manière appropriée (affichage à l'utilisateur, journalisation, etc.)
                 e.printStackTrace();
-                listener.onArticleRecupError("error lors de la recup de l'article");
+                return false ;
             }
-            return null;
+        }
+        protected void onPostExecute(Boolean success) {
+            super.onPostExecute(success);
+            if (success) {
+                listener.onArticleRecup();
+            } else {
+                listener.onArticleRecupError("Erreur lors de la recup de l'article");
+            }
         }
 
 
