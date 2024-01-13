@@ -21,7 +21,7 @@
                 android:id="@+id/buttonRetour"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="retour"
+                android:text="@string/retour"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"/>
     </LinearLayout>
@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Réinitialiser"
+                android:text="@string/reinitialiser"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <Button
@@ -72,7 +72,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Acheter"
+                android:text="@string/Confimer"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <Button
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Supprimer"
+                android:text="@string/supprimer"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
     </LinearLayout>
 

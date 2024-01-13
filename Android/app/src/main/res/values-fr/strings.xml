@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">MyMarket</string>
+    <string name="suivant">Suivant</string>
+    <string name="precedent">Precedent</string>
+    <string name="acheter">Acheter</string>
+    <string name="nouveau_client">Nouveau client ?</string>
+    <string name="parametre">Parametre</string>
+    <string name="deconnexion">Déconnexion </string>
+    <string name="reinitialiser">Réinitialiser</string>
+    <string name="Confimer">Acheter</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="retour">retour</string>
+    <string name="connexion">Connexion</string>
+    <string name="prix">Prix :</string>
+    <string name="stock">Stock :</string>
+    <string name="quantit">Quantité :</string>
+    <string name="language">Anglais</string>
+    <string name="errorAchatArticle">Pas assez de stock</string>
+    <string name="AchatArticle">Achat réussi</string>
+    <string name="errorlogin">Probleme lors de la connexion</string>
+    <string name="errorAchat">Erreur lors de l\'achat</string>
+    <string name="deleteok">Suppressiond de l\'article réussi </string>
+    <string name="errorDelete">Erreur lors de la suppression de l\'article</string>
+    <string name="suppressionvide">Sélectionnez un article</string>
+</resources>

@@ -1,6 +1,7 @@
 package com.example.mymarket.activities;
 
 import android.content.Intent;
+import android.view.Menu;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,8 +15,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements ArticleController.OnArticleListener {
+public class MainActivity extends MenuActivity implements ArticleController.OnArticleListener {
 
 
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ArticleController
             u = Utilisateur.getInstance(getApplicationContext());
             ac = new ArticleController(getApplicationContext());
             ac.RecupArticle(u.getNumArticle(), MainActivity.this);
-
+            System.out.println(u.getNumArticle());
         } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -45,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements ArticleController
 
         Button btnprec = (Button) findViewById(R.id.precedentButton) ;
         btnprec.setOnClickListener(v -> {
-            System.out.println("CLICK SUR SUIVANT");
-            if(u.getNumArticle()==1)u.setNumArticle(22);
+            System.out.println("CLICK SUR Precedent");
+            if(u.getNumArticle()<2 )u.setNumArticle(21);
             u.setNumArticle(u.getNumArticle() -1 );
             ac.RecupArticle(u.getNumArticle(),  MainActivity.this);
 
@@ -67,13 +69,13 @@ public class MainActivity extends AppCompatActivity implements ArticleController
             ArtCont.acheterArticleAsync(quantite, new AcheterController.OnAchatListener() {
                 @Override
                 public void onAchatSuccess() {
-                    Toast.makeText(MainActivity.this, "Article acheté", Toast.LENGTH_SHORT).show();
                     ac.RecupArticle(u.getNumArticle(), MainActivity.this);
+                    Toast.makeText(MainActivity.this, getString(R.string.AchatArticle), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
-                public void onAchatError(String errorMessage) {
-                    // Gérer l'erreur d'achat (affichage à l'utilisateur, journalisation, etc.)
+                public void onAchatError( ) {
+                    Toast.makeText(MainActivity.this, getString(R.string.errorAchatArticle), Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -92,11 +94,11 @@ public class MainActivity extends AppCompatActivity implements ArticleController
     public void onArticleRecup( )
     {
         updateView() ;
+
     }
 
     @Override
-    public void onArticleRecupError(String errorMessage) {
-
+    public void onArticleRecupError( ) {
     }
 
     private void updateView() {

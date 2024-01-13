@@ -1,43 +1,40 @@
-
 package com.example.mymarket.controller;
 import android.content.Context;
 import android.os.AsyncTask;
-import com.example.mymarket.Model.Article;
 import com.example.mymarket.Model.Utilisateur;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class AcheterController {
+public class ConfirmerAchatController {
 
     private Utilisateur u;
 
-    public AcheterController(Context context) throws IOException, SQLException, ClassNotFoundException {
+    public ConfirmerAchatController(Context context) throws IOException, SQLException, ClassNotFoundException {
         this.u = u.getInstance(context);
     }
 
-    public void acheterArticleAsync(int quantite, OnAchatListener listener) {
-        new AchatArticleTask(listener).execute(quantite);
+    public void confirmerAchatAsync(OnAchatConfirmListener listener) {
+        new confirmerAchatTask(listener).execute();
     }
 
-    private class AchatArticleTask extends AsyncTask<Integer, Void, Boolean> {
-        private final OnAchatListener listener;
+    private class confirmerAchatTask extends AsyncTask<Void, Void, Boolean> {
+        private final OnAchatConfirmListener listener;
 
-        public AchatArticleTask(OnAchatListener listener) {
+        public confirmerAchatTask(OnAchatConfirmListener listener) {
             this.listener = listener;
         }
 
         @Override
-        protected Boolean doInBackground(Integer... params) {
+        protected Boolean doInBackground(Void... params) {
+
             try {
-                int quantite = params[0];
-                return u.achat(quantite);
+                return u.confirm()  ;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-
-            @Override
+        @Override
         protected void onPostExecute(Boolean success) {
             super.onPostExecute(success);
             if (success) {
@@ -46,10 +43,11 @@ public class AcheterController {
                 listener.onAchatError();
             }
         }
+
     }
 
     // Interface pour écouter la fin de l'achat d'article
-    public interface OnAchatListener {
+    public interface OnAchatConfirmListener {
         void onAchatSuccess();
         void onAchatError();
     }

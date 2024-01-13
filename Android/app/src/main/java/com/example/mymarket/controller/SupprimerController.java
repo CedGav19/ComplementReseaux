@@ -35,7 +35,7 @@ public class SupprimerController {
 
             try {
                 return u.cancell(params[0]);
-                
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -46,7 +46,7 @@ public class SupprimerController {
             if (cancelSuccessful)
                 listener.onSupprimerOk();
             else
-                listener.onSupprimerError("error lors de la suppression de l'article" );
+                listener.onSupprimerError( );
 
         }
 
@@ -54,6 +54,6 @@ public class SupprimerController {
     public interface onSupprimerListener {
         void onSupprimerOk();
 
-        void onSupprimerError(String errorMessage);
+        void onSupprimerError( );
     }
 }

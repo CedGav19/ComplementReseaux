@@ -118,14 +118,13 @@ public class Utilisateur {
         }
     }
 
-    public void achat(Object quantite) throws IOException {
+    public boolean achat(Object quantite) throws IOException {
         if((Integer)quantite >0)
         {
             requete = "ACHAT#" + articleSelect.getIdAliment() + "#" + quantite;
             echange(requete);
 
             String[] mots = resultat.split("#");
-            //System.out.println(mots[1]);
             if(mots[1].equals("ok"))
             {
                 Article tampon;
@@ -134,20 +133,22 @@ public class Utilisateur {
                 tampon.setintitule(mots[2]);
                 tampon.setquantite((Integer) quantite);
                 tampon.setprix(Float.parseFloat(mots[3]));
-                //System.out.println( "Ajout bag : " + tampon);
 
                 addArt(tampon);
+                return true ;
             }
             else
             {
                 System.out.println("Erreur d achat");
                 MessageErr = "Erreur d achat stock insuffisant";
+                return false ;
             }
         }
         else
         {
             System.out.println("Quantite pas valide");
             MessageErr = "Quantite pas valide";
+            return false ;
         }
     }
 
@@ -202,7 +203,7 @@ public class Utilisateur {
         }
     }
 
-    public void confirm() throws IOException {
+    public boolean confirm() throws IOException {
         requete = "CONFIRMER#" + idUtilisateur;
         echange(requete);
 
@@ -212,12 +213,14 @@ public class Utilisateur {
             monPanier.clear();
             System.out.println("Confirm_OK");
             MessageErr = "Achat bien effectué !";
+            return true ;
         }
         else
         {
             System.out.println("Confirm_ERROR");
             MessageErr = "Erreur de la confirmation d achat";
         }
+        return false ;
     }
 
     public String login(String nom , String mdp, Boolean newuser) throws IOException {

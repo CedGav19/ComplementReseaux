@@ -1,6 +1,26 @@
 <resources>
     <string name="app_name">MyMarket</string>
-    <string name="suivant">suivant</string>
-    <string name="precedent">precedent</string>
-    <string name="acheter">acheter</string>
+    <string name="suivant">Next</string>
+    <string name="precedent">Previous</string>
+    <string name="acheter">Buy</string>
+    <string name="nouveau_client">New user ?</string>
+    <string name="parametre">settings</string>
+    <string name="deconnexion">Logout </string>
+    <string name="reinitialiser">Reset</string>
+    <string name="Confimer">Buy</string>
+    <string name="supprimer">Delete</string>
+    <string name="retour">Return</string>
+    <string name="connexion">Login</string>
+    <string name="prix">Price :</string>
+    <string name="stock">Stock :</string>
+    <string name="quantit">Quantity :</string>
+    <string name="language">French</string>
+    <string name="errorAchatArticle">Not enough stock available.</string>
+    <string name="AchatArticle">Purchase successful!</string>
+    <string name="errorlogin">Login failed. Please check your credentials and try again.</string>
+    <string name="errorAchat">Something went wrong</string>
+    <string name="deleteok">"Delete successful ! "</string>
+    <string name="errorDelete">Delete went wrong !</string>
+    <string name="suppressionvide">Please select an item</string>
+
 </resources>

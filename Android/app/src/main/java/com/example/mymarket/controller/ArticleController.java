@@ -42,7 +42,7 @@ public class ArticleController {
             if (success) {
                 listener.onArticleRecup();
             } else {
-                listener.onArticleRecupError("Erreur lors de la recup de l'article");
+                listener.onArticleRecupError();
             }
         }
 
@@ -52,6 +52,6 @@ public class ArticleController {
     // Interface pour écouter la fin de la récupération d'article
     public interface OnArticleListener {
         void onArticleRecup( );
-        void onArticleRecupError(String errorMessage);
+        void onArticleRecupError( );
     }
 }

@@ -12,11 +12,15 @@
 
 
             android:id="@+id/Name"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="95dp"
-            android:layout_marginEnd="106dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="187dp"
-            android:layout_marginBottom="60dp" app:layout_constraintBottom_toTopOf="@+id/Password"
-            android:minHeight="48dp" app:layout_constraintHorizontal_bias="1.0"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="187dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/Password"
+            android:minHeight="48dp"
+            />
+
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,16 +29,37 @@
             android:id="@+id/Password"
             android:layout_marginTop="60dp"
             app:layout_constraintTop_toBottomOf="@+id/Name"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="97dp"
-            android:layout_marginBottom="126dp" app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
-            android:layout_marginEnd="104dp" app:layout_constraintEnd_toEndOf="parent"
-            android:minHeight="48dp"  android:text="ced123"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="126dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:minHeight="48dp"
+            android:text="ced123"/>
     <Button
-            android:text="Button"
+            android:text="@string/connexion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/buttonLogin"
             android:layout_marginEnd="159dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="220dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="158dp"
             android:layout_marginTop="96dp" app:layout_constraintTop_toBottomOf="@+id/Password"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="203dp"
+            android:layout_height="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Password"
+            app:layout_constraintBottom_toTopOf="@+id/buttonLogin">
+
+        <Switch
+                android:text="@string/nouveau_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchnvclient"
+                android:minHeight="48dp"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
