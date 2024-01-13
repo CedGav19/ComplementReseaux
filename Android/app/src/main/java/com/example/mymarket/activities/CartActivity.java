@@ -15,17 +15,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.mymarket.controller.ConfirmerAchatController;
+import com.example.mymarket.controller.SupprimerAllController;
 import com.example.mymarket.controller.SupprimerController ;
 
-public class CartActivity extends AppCompatActivity implements SupprimerController.onSupprimerListener , ConfirmerAchatController.OnAchatConfirmListener {
+public class CartActivity extends AppCompatActivity implements SupprimerController.onSupprimerListener , ConfirmerAchatController.OnAchatConfirmListener , SupprimerAllController.onSupprimerAllListener{
     private List<Article> panier = new ArrayList<>();
     private Button retour ;
     private Button supprimer ;
+
+    private Button supprimerAll ;
     private Button achat ;
     int articleSelectionne ;
     ArrayAdapter<Article> adaptateur ;
     SupprimerController sc  ;
+
+    SupprimerAllController sca;
     ConfirmerAchatController cac ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,8 @@ public class CartActivity extends AppCompatActivity implements SupprimerControll
         articleSelectionne=-1 ;
 
         try {
+            //New supprimer all
+            sca = new SupprimerAllController(getApplicationContext()) ;
             sc = new SupprimerController(getApplicationContext()) ;
             cac = new ConfirmerAchatController(getApplicationContext());
             panier = Utilisateur.getInstance(null).getMonPanier();
@@ -70,6 +78,15 @@ public class CartActivity extends AppCompatActivity implements SupprimerControll
                 Intent intent = new Intent(CartActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        this.supprimerAll = (Button)  findViewById(R.id.buttonReset);
+        supprimerAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("suppression de tous les aricles : ");
+                sca.supprimerAllArticle( CartActivity.this);
             }
         });
 
@@ -114,6 +131,17 @@ public class CartActivity extends AppCompatActivity implements SupprimerControll
     @Override
     public void onSupprimerError( ) {
         Toast.makeText(CartActivity.this, getString(R.string.errorDelete), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSupprimerAllError( ) {
+        Toast.makeText(CartActivity.this, getString(R.string.errorDeleteAll), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSupprimerAllOk() {
+        Toast.makeText(CartActivity.this, getString(R.string.deleteokAll), Toast.LENGTH_SHORT).show();
+        updateUI();
     }
 
     private void  updateUI()

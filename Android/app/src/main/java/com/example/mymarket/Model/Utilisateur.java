@@ -186,20 +186,27 @@ public class Utilisateur {
 
     }
 
-    public void cancellall() throws IOException {
+    public boolean cancellall() throws IOException {
         requete = "CANCELALL";
         echange(requete);
 
         String[] mots = resultat.split("#");
         if(mots[1].equals("ok"))
         {
-            monPanier.clear();
-            System.out.println("CANCELALL_OK");
+            for(int j = 0 , taille = monPanier.size(); taille > j ; j++)
+            {
+                System.out.println("Suppression de :"+ monPanier.get(0));
+                removeArticlePanier(monPanier.get(0));
+            }
+            System.out.println("CANCELLALL_OK");
+            MessageErr = "Panier bien supprimé !";
+            return true ;
         }
         else
         {
             System.out.println("CANCELALL_ERROR");
-            MessageErr = "CancelAll erreur";
+            MessageErr = "Erreur suppression panier!";
+            return false;
         }
     }
 

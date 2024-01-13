@@ -21,5 +21,7 @@
     <string name="errorAchat">Erreur lors de l\'achat</string>
     <string name="deleteok">Suppressiond de l\'article réussi </string>
     <string name="errorDelete">Erreur lors de la suppression de l\'article</string>
-    <string name="suppressionvide">Sélectionnez un article</string>
+    <string name="suppressionvide">Erreur suppression vide</string>
+    <string name="errorDeleteAll">Erreur de la suppresion du panier</string>
+    <string name="deleteokAll">Panier bien supprimé</string>
 </resources>

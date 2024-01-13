@@ -22,5 +22,6 @@
     <string name="deleteok">"Delete successful ! "</string>
     <string name="errorDelete">Delete went wrong !</string>
     <string name="suppressionvide">Please select an item</string>
-
+    <string name="errorDeleteAll">Delete all went wrong !</string>
+    <string name="deleteokAll">"Delete all successful !"</string>
 </resources>
