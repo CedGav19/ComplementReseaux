@@ -118,14 +118,13 @@ public class Utilisateur {
         }
     }
 
-    public void achat(Object quantite) throws IOException {
+    public boolean achat(Object quantite) throws IOException {
         if((Integer)quantite >0)
         {
             requete = "ACHAT#" + articleSelect.getIdAliment() + "#" + quantite;
             echange(requete);
 
             String[] mots = resultat.split("#");
-            //System.out.println(mots[1]);
             if(mots[1].equals("ok"))
             {
                 Article tampon;
@@ -134,24 +133,26 @@ public class Utilisateur {
                 tampon.setintitule(mots[2]);
                 tampon.setquantite((Integer) quantite);
                 tampon.setprix(Float.parseFloat(mots[3]));
-                //System.out.println( "Ajout bag : " + tampon);
 
                 addArt(tampon);
+                return true ;
             }
             else
             {
                 System.out.println("Erreur d achat");
                 MessageErr = "Erreur d achat stock insuffisant";
+                return false ;
             }
         }
         else
         {
             System.out.println("Quantite pas valide");
             MessageErr = "Quantite pas valide";
+            return false ;
         }
     }
 
-    public void cancell(int numArt) throws IOException {
+    public boolean cancell(int numArt) throws IOException {
         if(numArt != -1 )
         {
             requete = "CANCEL#" + numArt;
@@ -165,7 +166,7 @@ public class Utilisateur {
                     {
                         removeArticlePanier(artPass);
                         System.out.println("CANCELL_OK");
-                        return;
+                        return true ;
                     }
                 }
             }
@@ -173,6 +174,7 @@ public class Utilisateur {
             {
                 System.out.println("Erreur_CANCELL");
                 MessageErr = "Erreur de cancel";
+
             }
         }
         else
@@ -180,27 +182,35 @@ public class Utilisateur {
             System.out.println("CANCEL_NO_SELECT");
             MessageErr = "Veuillez sélectionner un article a supprimer !";
         }
+        return false ;
 
     }
 
-    public void cancellall() throws IOException {
+    public boolean cancellall() throws IOException {
         requete = "CANCELALL";
         echange(requete);
 
         String[] mots = resultat.split("#");
         if(mots[1].equals("ok"))
         {
-            monPanier.clear();
-            System.out.println("CANCELALL_OK");
+            for(int j = 0 , taille = monPanier.size(); taille > j ; j++)
+            {
+                System.out.println("Suppression de :"+ monPanier.get(0));
+                removeArticlePanier(monPanier.get(0));
+            }
+            System.out.println("CANCELLALL_OK");
+            MessageErr = "Panier bien supprimé !";
+            return true ;
         }
         else
         {
             System.out.println("CANCELALL_ERROR");
-            MessageErr = "CancelAll erreur";
+            MessageErr = "Erreur suppression panier!";
+            return false;
         }
     }
 
-    public void confirm() throws IOException {
+    public boolean confirm() throws IOException {
         requete = "CONFIRMER#" + idUtilisateur;
         echange(requete);
 
@@ -210,15 +220,18 @@ public class Utilisateur {
             monPanier.clear();
             System.out.println("Confirm_OK");
             MessageErr = "Achat bien effectué !";
+            return true ;
         }
         else
         {
             System.out.println("Confirm_ERROR");
             MessageErr = "Erreur de la confirmation d achat";
         }
+        return false ;
     }
 
     public String login(String nom , String mdp, Boolean newuser) throws IOException {
+
         if(nom.length() == 0 || mdp.length() == 0)
         {
             return "Les champs ne peuvent pas etre vide !";
@@ -281,6 +294,7 @@ public class Utilisateur {
         prop   = new ReadProperties(context);
 
         String ipServeur = prop.getServerAddress();
+        System.out.println(prop.getServerAddress());
         int socket = prop.getServerPort();
         cSocket = new Socket(ipServeur,socket);
 

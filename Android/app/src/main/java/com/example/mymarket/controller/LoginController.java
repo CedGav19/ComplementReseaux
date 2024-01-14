@@ -16,8 +16,8 @@ public class LoginController {
         this.utilisateur = Utilisateur.getInstance(context);
     }
 
-    public void performLoginAsync(String username, String password, OnLoginCompleteListener listener) {
-        new LoginTask(listener).execute(username, password);
+    public void performLoginAsync(String username, String password,boolean nvClient, OnLoginCompleteListener listener) {
+        new LoginTask(listener).execute(username, password, String.valueOf(nvClient));
     }
 
     private class LoginTask extends AsyncTask<String, Void, Void> {
@@ -28,7 +28,7 @@ public class LoginController {
         }
 
         @Override
-        protected Void doInBackground(String... params) {
+        protected Void doInBackground(String... params ) {
             String success = "";
 
             if (params[0] == null || params[0].equals("") || params[1] == null || params[1].equals("")){
@@ -37,7 +37,8 @@ public class LoginController {
             }
 
             try {
-                success = utilisateur.login(params[0], params[1], false);
+                System.out.println("-- valeur de params3[] newclient "+ Boolean.parseBoolean(params[2]));
+                success = utilisateur.login(params[0], params[1], Boolean.parseBoolean(params[2]));
             } catch (IOException e) {
                 e.printStackTrace();
             }

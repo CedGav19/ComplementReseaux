@@ -68,7 +68,8 @@ public class Article {
 
     @Override
     public String toString() {
-        return  getIdAliment() + " " + getIntitule() + " " + getQuantite() + " " + getPrix() + " " + getAdrImage();
+        int espaceRestant = 20 - getIntitule().length();
+        return    String.format("%" + espaceRestant + "s %s %3d pcs %7.2f€ ", "", getIntitule(), getQuantite(), getPrix() * getQuantite());
     }
     public String toStringBag() {
         int espaceRestant = 20 - getIntitule().length(); // 25 est la largeur totale souhaitée
